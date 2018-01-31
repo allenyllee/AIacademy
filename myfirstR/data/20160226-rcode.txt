@@ -1,0 +1,29 @@
+
+
+iris
+summary(iris)
+str(iris)
+iris[1, 4]
+iris$Sepal.Length
+iris.kmeans <- kmeans(scale(iris[, 1:4]), 3)
+iris.kmeans
+str(iris.kmeans)
+iris.kmeans$cluster
+
+iris.pca <- princomp(scale(iris[,1:4]), 2)
+iris.pca
+
+plot(iris.pca$scores[, 1], iris.pca$scores[,2], col=iris.kmeans$cluster+1)
+
+iris.pca$loadings
+
+centers.pca <- as.matrix(iris.kmeans$centers)%*%(iris.pca$loadings[,1:2])
+points(centers.pca, pch=2:4, cex=1.5, lwd=2)
+
+
+library(e1071) 
+iris.cmeans <- cmeans(iris[,1:4], 3)
+str(iris.cmeans)
+heatmap(iris.cmeans$membership, Colv=NA)
+
+

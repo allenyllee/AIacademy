@@ -1,0 +1,22 @@
+地區	人口密度	Area
+宜蘭縣	214.02	Ilan
+花蓮縣	72.03	Hualien
+南投縣	125.25	Nantou
+屏東縣	305.49	Pingtung
+苗栗縣	311.56	Miaoli
+桃園市	1685.84	Taoyuan
+高雄縣	942.79	Kaohsiung
+高雄市	942.79	Kaohsiung City
+基隆市	2810.18	Keelung City
+雲林縣	546.43	Yunlin
+新北市	1932.61	Taipei
+新竹	4524.25	Hsinchu
+嘉義	4788.46	Chiayi
+彰化縣	1202.05	Changhwa
+臺中縣	1227.97	Taichung
+臺中市	1227.97	Taichung City
+臺北市	9942.3	Taipei City
+臺東縣	63.86	Taitung
+臺南市	859.75	TainanCity
+臺南縣	859.75	Tainan
+澎湖縣	802.1	Penghu

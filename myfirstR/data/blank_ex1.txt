@@ -1,0 +1,7 @@
+Name	Gender	Birthday	Income	EventTime
+John	M	1973/1/3	162.2	13:00
+Mary	F	1982/7/2	90.8	
+Tim	M	1977/6/30	68.5	02:30
+Ron	M	1968/10/15	220.1	05:20
+Cathy	F	1980/12/1	150	19:10
+Sue	F	1976/4/2	NA	12:00

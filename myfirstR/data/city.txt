@@ -1,0 +1,11 @@
+location	price
+taipei	325
+new york	201
+boston	157
+tokyo	162
+hong kong	164
+shanghai	95
+la	117
+Vancouver	188
+Seoul	121
+seattle	101
