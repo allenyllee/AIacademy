@@ -12,11 +12,13 @@ regplot <- function(x, y){
 }
 mapply(regplot, anscombe[, 1:4], anscombe[, 5:8])
 
+boxplot(anscombe)
 
 # 16/135
+install.packages("ggplot2")
 library(ggplot2)
-qplot(Sepal.Length, Petal.Length, geom="point", data=iris, colour = Species, main="scatterplot")
-qplot(Species, Sepal.Length, geom="boxplot", fill=Species, data=iris)
+qplot(Sepal.Length, Petal.Length, geom="point", data=iris, colour = Species, main="scatterplot")
+qplot(Species, Sepal.Length, geom="boxplot", fill=Species, data=iris)
 
 
 # 17/135
@@ -99,6 +101,8 @@ pie(rep(1,200), labels="", col=rainbow(200), border=NA, main = "Rainbow Pie")
 
 
 # 31/135
+install.packages("plotrix")
+install.packages("survival")
 library(plotrix)
 library(survival)
 head(veteran)
@@ -189,7 +193,7 @@ ploy <- function(x, y){x^2-x*y+y^2}
 x.grid <- seq(-3, 3, length=50)
 y.grid <- seq(-3, 3, length=50)
 z.grid <- outer(x.grid, y.grid, FUN=ploy)
-ploy.title <- paste("三維空間散圖\n", "f(x, y) =x^2-xy+y^2")
+ploy.title <- paste("?T???韃?????\n", "f(x, y) =x^2-xy+y^2")
 persp(x.grid, y.grid, z.grid, main= ploy.title)
 
 
@@ -393,7 +397,7 @@ tm <- floor((100-1)/(max(x)-min(x))*(x-min(x)) + 1)
 used.col <- heat.colors(100)[tm]
 points(data$lon, data$lat, pch=15, col=used.col)
 text(data$lon, data$lat, labels=row.names(data))
-title("20140714, 晚上8時各地溫度")
+title("20140714, ?艉W8?犰U?a?贖?")
 par(mar=c(1,1,1,1))
 image(t(matrix(c(1:100), ncol=1)), 
       col=heat.colors(100), xaxt="n", yaxt="n")

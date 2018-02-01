@@ -1,10 +1,12 @@
 # 13/46
+install.packages("vegan")
 library(vegan)
 source("panelutils.R")
 spe <- read.csv("DoubsSpe.csv", row.names=1)
 env <- read.csv("DoubsEnv.csv", row.names=1)
 spa <- read.csv("DoubsSpa.csv", row.names=1)
 
+install.packages("ade4")
 library(ade4)
 data(doubs)
 ?doubs
