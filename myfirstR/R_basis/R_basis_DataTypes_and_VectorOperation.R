@@ -27,7 +27,8 @@ typeof(this.is.a.character_item2)
 # Only numeric variable can do mathematical operation
 this.is.a.numeric_item + 101
 this.is.a.numeric_item2[2] + 101
-print(this.is.a.character_item)
+this.is.a.numeric_item2 + 101 # 對所有元素+101
+print(this.is.a.character_item) # 文字會被雙引號括起來
 this.is.a.character_item + 101 # this line will make a error
 
 print(this.is.a.numeric_item)
@@ -59,8 +60,10 @@ this.is.a.numeric_list <- c(1,2,3,4)
 this.is.a.numeric_list2 <- c(1,2,3,4, NA)
 
 sum(this.is.a.numeric_list)
-sum(this.is.a.numeric_list2)
-sum(this.is.a.numeric_list2, na.rm = TRUE)
+sum(this.is.a.numeric_list2) # 只要有一個NA 就返回NA
+sum(this.is.a.numeric_list2, na.rm = TRUE) # 將NA移除
+
+mean(this.is.a.numeric_list2, na.rm = TRUE)
 
 # 檢視變數列中，是否有 NA (以及NA 在哪)
 # Check NA in the variable list
@@ -68,16 +71,22 @@ print(this.is.a.numeric_list2)
 is.na(this.is.a.numeric_list2)
 which(is.na(this.is.a.numeric_list2))
 
+# 找到NA後，用mean取代
+this.is.a.numeric_list2[which(is.na(this.is.a.numeric_list2))] <- mean(this.is.a.numeric_list2, na.rm = TRUE)
+this.is.a.numeric_list2
+
 # 字串形式可以被用任意字符切開
 # Character can be splited by a character
 print(this.is.a.character_item2)
+help(strsplit)
 strsplit(x = this.is.a.character_item2, split = "b")
 
 # 尋找特定字眼是否出現在變數列中
 # Find specific term in the variable list
+# 注意: strsplit 回傳 double array, 要先取出一個
 temp <- strsplit(x = this.is.a.character_item2, split = "b")[[1]]
 print(temp)
-"c" %in% temp
+"c" %in% temp # %in% 檢查前面的字串是否存在後面的變數中
 "C" %in% temp
 tolower("C") %in% temp
 

@@ -1,3 +1,8 @@
+# =================
+# 介面認識與套件安裝
+# =================
+
+# ctrl+enter to execute
 1+1 # ctrl+enter to execute this line
 
 # mark below lines and ctrl+enter to execute all lines
@@ -41,11 +46,21 @@ View(installed.packages())
 # 3. 若沒有安裝，請用 install.packages 安裝缺少的套件
 
 # ================
+# 資料型態與向量運算
+# ================
 
+# R 裡面的index 是從1開始不是0
+this.is.a.numeric_item2 <- c(101,201,301,101)
 
+this.is.a.numeric_item2[1]
+this.is.a.numeric_item2[1:3]
 
-
-
+this.is.a.character_item2 <- "abcbabd"
+temp <- strsplit(x = this.is.a.character_item2, split = "b")[[1]]
+print(temp)
+"c" %in% temp # %in% 檢查前面的字串是否存在後面的變數中
+"C" %in% temp # case sensitive
+tolower("C") %in% temp # change case
 
 
 
