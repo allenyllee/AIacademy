@@ -98,17 +98,24 @@ The main idea of factor is to use memory efficiently -- numeric vector + levels
 '
 this.is.a.character_list <- c("A","B","C","B","A","A")
 
+help(factor)
+
 this.is.a.character_to_factor <- factor(this.is.a.character_list)
-str(this.is.a.character_to_factor)
-levels(this.is.a.character_to_factor)
+str(this.is.a.character_to_factor) # show strucure
+# result: Factor w/ 3 levels "A","B","C": 1 2 3 2 1 1
+# 原本的A B C 變成3個level, mapping到數字1 2 3, 所以原本的list 轉成數字表示
+levels(this.is.a.character_to_factor) # show levels
 
 # 因子可以是有順序性的
 # Factor can be ordered by add "ordered = TRUE, levels = ..."
 this.is.a.character_to_factor2 <- factor(this.is.a.character_list, 
                                          ordered = TRUE, 
-                                         levels = c("C","B","A"))
+                                         levels = c("C","B","A")) # 可以指定level的順序，由小到大: C=1, B=2, A=3
 str(this.is.a.character_to_factor2)
+# result: Ord.factor w/ 3 levels "C"<"B"<"A": 3 2 1 2 3 3
+# 原本的 ("A","B","C","B","A","A") 變成 3 2 1 2 3 3
 levels(this.is.a.character_to_factor2)
+
 
 ### list ====
 # 建立一個含有多種資料型態在內的 list 
@@ -123,17 +130,22 @@ print(this.is.a.list)
 
 # 用 [[ ]] 取得 list 中的 element
 # To access the element in the list, use [[ ]]
+length(this.is.a.list) # list 的長度
+seq(length(this.is.a.list)) # 建立一個長度為list的數字向量
 for (i in seq(length(this.is.a.list))) {
   # print the ith element in the list
   print(this.is.a.list[[i]]) 
 }
 
 
-### data.frame ====
+### data.frame ==== 類似execl 的表格
 mtcars
+View(mtcars) # show mtcars in new tabs of data.frame
 
 # 檢視資料集的前 n 行與後 n 行
 # Examine the first/last few rows of the data frame
+help(head)
+head(mtcars)
 head(mtcars, 5)
 tail(mtcars) # n defaulf is 6
 
@@ -144,35 +156,49 @@ colnames(mtcars)
 
 # 檢視資料集中，每個欄位的資料型態
 # Examine the type of the data frame of each column
+mtcars$mpg
+mtcars$hp
 typeof(mtcars$mpg)
 
-?sapply
-sapply(mtcars, typeof)
+?sapply # sapply 對每個column 做同樣的動作
+sapply(mtcars, typeof) # 對mtcars 每個col 取typeof
 
 # 檢視資料集的摘要
 # Examine the basic infomation and summary of the data frame
-str(mtcars)
-summary(mtcars)
+str(mtcars) # 了解資料的型態
+summary(mtcars) # 了解資料的最大最小中位數分位數NA數...等
 
 # 資料集中的某欄數值可以透過 $ 記號取得，或是用 "var"
 # access a variable of data frame through $ or "var"
 mtcars$mpg # will return vector
-mtcars[, "mpg"] # will return vector
-mtcars["mpg"] # will return a data frame
+mtcars[, "mpg"] # will return vector #有逗號會回傳vector
+mtcars[1:5, "mpg"] #取出前1~5 個mpg的值
+mtcars["mpg"] # will return a data frame # 沒逗號會回傳data.frame
 
 # 也可以透過 $ 創造新的欄位
 # create new column through $
-mtcars$hp.mpg <- mtcars$hp / mtcars$mpg
+colnames(mtcars)
+mtcars$hp.mpg <- mtcars$hp / mtcars$mpg # 建立一個新欄位hp.mpg = hp / mpg
 print(head(mtcars[c("hp", "mpg", "hp.mpg")]))
+colnames(mtcars)
 
 # 選取特定列與欄資料
 # access certain row and columns
 mtcars[5, ] # display the 5th row of the data frame
 mtcars[c(2,3,4), ] # display the 2 to 4 rows of the data frame
+mtcars[2:4, ] # same as above
+mtcars[c(2,3,5), ] # display 2,3,5 row
 
 mtcars[c(2,3,4), c("mpg","cyl")]
 
 ### END  ==== 
 # This is the end of this section
+?rm
+a <- c(1,2,3,4)
+b <- c("a", "b", "c", "d")
+
+rm(a) # only clear a
+ls() # 列出環境變數
 rm(list = ls()) # clear all variables
+
 
