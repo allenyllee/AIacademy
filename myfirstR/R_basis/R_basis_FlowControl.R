@@ -14,7 +14,7 @@ print(a[1:20]) # print first 20 elements in the variable "a"
 
 # 每個數值都平方，使用 "for loop"
 # square to each element in the variable with "for loop"
-start.time <- proc.time()
+start.time <- proc.time() # proc.time() 回傳 CPU 時間
 for (index in a) {
   print(index^2)
 }
@@ -51,11 +51,11 @@ print(time.loop.noloop)
 # 基本用法: 用於數字向量 (>, == , < , or: |, and: &)
 # basic usage: with numeric vector (>, == , < , or: |, and: &)
 this.is.a.numeric_vec <- c(1,2,3,4,5)
-x <- this.is.a.numeric_vec > 3
+x <- this.is.a.numeric_vec > 3 # 對向量的每個元素檢查是否大於3
 print(x)
-this.is.a.numeric_vec[this.is.a.numeric_vec > 3]
-this.is.a.numeric_vec[this.is.a.numeric_vec < 3 | this.is.a.numeric_vec > 3]
-this.is.a.numeric_vec[this.is.a.numeric_vec > 2 & this.is.a.numeric_vec < 4]
+this.is.a.numeric_vec[this.is.a.numeric_vec > 3] # 回傳大於3的元素
+this.is.a.numeric_vec[this.is.a.numeric_vec < 3 | this.is.a.numeric_vec > 3] # 回傳小於3或大於3的元素
+this.is.a.numeric_vec[this.is.a.numeric_vec > 2 & this.is.a.numeric_vec < 4] # 回傳大於2且小於4的元素
 
 # 條件式
 # 基本用法: 用於文字向量
@@ -68,15 +68,23 @@ this.is.a.char_vec[this.is.a.char_vec != "c"]
 # 用於 data.frame
 # conditional statement in data frame
 head(mtcars)
-mtcars["mpg" > mean(mtcars$mpg), ]
 
-x <- which(mtcars$mpg > mean(mtcars$mpg) & mtcars$carb == 1)
+which(mtcars$mpg > mean(mtcars$mpg)) # 回傳是true的項目index
+sum(mtcars$mpg > mean(mtcars$mpg)) # 因為true被視為1，可以用sum() 計算為true的項目有幾個
+
+mtcars[mtcars$mpg > mean(mtcars$mpg), ] # 回傳mpg欄中 中大於平均值的項目
+nrow(mtcars[mtcars$mpg > mean(mtcars$mpg), ]) #回傳項目的總數
+
+
+unique(mtcars$carb) # 回傳出現過的元素值(重複的值只算一次)
+
+x <- which(mtcars$mpg > mean(mtcars$mpg) & mtcars$carb == 1) # 回傳mpg 欄中大於平均值, 且crab 值等於1 的項目index
 print(x)
 mtcars[x,]
 
 # 條件判斷式
 # condition statement
-a <- sample(1:100, 10, replace = F)
+a <- sample(1:100, 10, replace = F) # 從1~100中隨機抽取，取出不放回(replace=F)
 print(a)
 for (i in a) {
   if (i <= 10 ) {
@@ -92,28 +100,46 @@ for (i in a) {
 
 # 自訂義一個平方後加 1 的函式
 # Define a function that squre(x) and add 1
-squre_add_1 <- function(x) {
+squre_add_1 <- function(x, y = 10) { # y 的default 為 10
   # You can do anything here
-  tmp <- x^2 + 1
+  tmp <- x^2 + 1 + y
   
   # You have to return something to get output
   return(tmp)
 }
-squre_add_1(10)
+squre_add_1(10) # y 使用default
+squre_add_1(10, 2)
 
 # 將前面判斷大小的範例轉成以向量進行, 結合 sapply 與 customized function
 # Combine sapply and customized function to check element status in the variable list
 check.status <- function(x) {
   if (x <= 10 ) {
-    out <- paste(x, " is less than or equal to 10", sep = "")
+    print("debug 1")
+    out <- paste(x, " is less than or equal to 10", sep = " ?") # paste() 作用是連接字串
+    return(out) 
   } else if (x > 10 & x < 50) {
-    out <- paste(x, " is larger than 10 and smaller than 50")
+    print("debug 2")
+    out <- paste(x, " is larger than 10 and smaller than 50", sep = " |")
+    return(out)
   } else {
+    print("debug 3")
     out <- paste(x, " is larger than 50")
+    return(out) 
   }
-  return(out)
+  print("debug 0")
+  return("0") 
 }
+
+# sapply() 的執行順序跟for loop不同，
+# for loop 是一個元素一個元素往下執行，所以可以看到對每個元素先print debug再 return
+# 而sapply() 是以指令為單位，對所有元素操作一遍，在往下一個指令對所有元素操作一遍，以此類推...
 sapply(a, check.status)
+
+for(i in a){
+  print(check.status(i))
+}
+
+
 
 ### END  ==== 
 # This is the end of this section
