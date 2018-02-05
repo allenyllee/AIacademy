@@ -509,4 +509,32 @@ rownames(mtcars[mtcars$disp > median(mtcars$disp),]) # 不要忘記data.frame[ro
 
 # =============================
 
+# Splitting a Large Data File in R using Strsplit and R Connection - Stack Overflow
+# https://stackoverflow.com/questions/31645148/splitting-a-large-data-file-in-r-using-strsplit-and-r-connection
+
+# origin data
+lines <- c("A|1\tB|2\t0.5\t0.4", "C|3\tD|4\t0.9\t1", "E|5\tF|6\t0.7\t0.2")
+lines[1]
+
+# define split_n_bind
+library(reshape2)
+split_n_bind <- function(x, p="\\|",n=c(1:2), sel=c(1)){
+  lines3 <- character(0)
+  tmp <- colsplit(x, pattern=p, names=n)
+  rbind(lines3,c(unlist(tmp[sel], use.names=FALSE)))
+}
+
+
+# first use colsplit with pattern "\t" to split lines into 4 columes named 1,2,3,4
+linessplit <- colsplit(lines, pattern="\t", names=c(1,2,3,4))
+str(linessplit)
+nrow(linessplit)
+linessplit
+
+# second use sapply split_n_bind with pattern "\\|" to split linessplit into 2 columes named 1,2, so that generate 2 other rows that contains separated datas.
+# then select first separated data, that is the row 1:2 (on the other hand, the second separated data is the row 3:4)
+linessplit <- sapply(linessplit, split_n_bind)
+linessplit
+
+# ================================
 
