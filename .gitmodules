@@ -1,0 +1,3 @@
+[submodule "myPython"]
+	path = myPython
+	url = https://gitlab.aiacademy.tw/aiacademy/courses.git
