@@ -507,34 +507,46 @@ mtcars
 mtcars[mtcars$disp > median(mtcars$disp),]
 rownames(mtcars[mtcars$disp > median(mtcars$disp),]) # 不要忘記data.frame[row,col] 取得row 之後要加上逗號
 
-# =============================
-
+# ================================
 # Splitting a Large Data File in R using Strsplit and R Connection - Stack Overflow
-# https://stackoverflow.com/questions/31645148/splitting-a-large-data-file-in-r-using-strsplit-and-r-connection
+# https://stackoverflow.com/questions/31645148/splitting-a-large-data-file-in-r-using-strsplit-and-r-connection/48728760#48728760
+# ================================
 
-# origin data
+# 1. Read original data into lines
 lines <- c("A|1\tB|2\t0.5\t0.4", "C|3\tD|4\t0.9\t1", "E|5\tF|6\t0.7\t0.2")
-lines[1]
+lines
 
-# define split_n_bind
+# 2. Load reshape2 library to import function colsplit, then use it with pattern "\t" to split lines into 4 columns named 1,2,3,4.
 library(reshape2)
-split_n_bind <- function(x, p="\\|",n=c(1:2), sel=c(1)){
-  lines3 <- character(0)
-  tmp <- colsplit(x, pattern=p, names=n)
-  rbind(lines3,c(unlist(tmp[sel], use.names=FALSE)))
+linessplit <- colsplit(lines, pattern="\t", names=c(1:4))
+linessplit
+
+# 3. That's make a function to take a row, split into rows and select the row we want.
+
+# Take the first row of linessplit into colsplit:
+tmp <- colsplit(linessplit[1,], pattern="\\|", names=c(1:2))
+tmp
+
+# Take transpose:
+tmp <- t(colsplit(linessplit[1,], pattern="\\|", names=c(1:2)))
+tmp
+
+# Select first row:
+tmp[1,]
+
+# Make above steps a function split_n_select:
+split_n_select <- function(x, sel=c(1), pat="\\|", nam=c(1:2)){
+  tmp <- t(colsplit(x, pattern=pat, names=nam))
+  tmp[sel,]
 }
 
+# 4. Use sapply to apply function split_n_select to each row in linessplit 
+linessplit2 <- sapply(linessplit, split_n_select)
+linessplit2
 
-# first use colsplit with pattern "\t" to split lines into 4 columes named 1,2,3,4
-linessplit <- colsplit(lines, pattern="\t", names=c(1,2,3,4))
-str(linessplit)
-nrow(linessplit)
-linessplit
+# 5. You can also select the second row by adding sel=c(2)
+linessplit2 <- sapply(linessplit, split_n_select, sel=c(2))
+linessplit2
 
-# second use sapply split_n_bind with pattern "\\|" to split linessplit into 2 columes named 1,2, so that generate 2 other rows that contains separated datas.
-# then select first separated data, that is the row 1:2 (on the other hand, the second separated data is the row 3:4)
-linessplit <- sapply(linessplit, split_n_bind)
-linessplit
-
-# ================================
+# =====================
 
