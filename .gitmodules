@@ -4,3 +4,6 @@
 [submodule "AI-Academy-course-notes"]
 	path = AI-Academy-course-notes
 	url = https://github.com/allenyllee/AI-Academy-course-notes.git
+[submodule "myfirstR"]
+	path = myfirstR
+	url = https://github.com/allenyllee/myfirstR.git
