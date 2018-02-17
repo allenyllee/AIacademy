@@ -549,4 +549,60 @@ linessplit2 <- sapply(linessplit, split_n_select, sel=c(2))
 linessplit2
 
 # =====================
+#What is the meaning of the "." (dot) in R? - Cross Validated
+#https://stats.stackexchange.com/questions/10712/what-is-the-meaning-of-the-dot-in-r
+
+
+a <- list(b=1)
+
+class(a) # 物件a 的類別原本是 list
+class(a) <- "myclass" # 指定物件a 的類別為 myclass
+class(a) # 新的類別為 myclass
+
+?class()
+# Many R objects have a class attribute, a character vector giving 
+# the names of the classes from which the object inherits. If the 
+# object does not have a class attribute, it has an implicit class, 
+# "matrix", "array" or the result of mode(x) (except that integer 
+# vectors have implicit class "integer").
+
+?UseMethod()
+# When a function calling UseMethod("fun") is applied to an object 
+# with class attribute c("first", "second"), the system searches 
+# for a function called fun.first and, if it finds it, applies it 
+# to the object.
+
+# 宣告一個函數 myfunciton 使用 tmp 方法
+myfunciton <- function(x,...) UseMethod("tmp")
+
+# 定義tmp 方法套用到 myclass 類別的物件時的動作
+tmp.myclass <- function(x,...) x$b+5
+
+# 將函數myfunciton (使用tmp方法) 套用在物件a (屬於myclass)
+myfunciton(a)
+
+rm(list = ls())
+
+# ====================
+#r - Meaning of ~. (tilde dot) argument? - Stack Overflow
+#https://stackoverflow.com/questions/13446256/meaning-of-tilde-dot-argument
+
+# The left hand is the dependent variable, the right hand is 
+# the independent variable. Much like y = bx + c means that y ~ x.
+plot( mpg ~ cyl, data= mtcars ) # mpg (y) 對 cyl (x) 作圖
+
+plot( cyl ~ mpg, data= mtcars ) # cyl (y) 對 mpg (x) 作圖
+
+plot( cyl ~ ., data= mtcars ) # cyl (y) 對 除了cyl以外的欄位 (x) 作圖(分開畫)
+
+plot( ~ ., data= mtcars ) # 對所有的組合從mpg vs. mpg 到 carb vs. carb 作圖 (畫在同一張)
+
+mtcars
+
+?lm # lm is used to fit linear models.
+
+lm( mpg ~ ., data= mtcars) # 用 mpg (y) 對其他變數(x)做線性回歸
+
+# =====================
+
 
