@@ -1,6 +1,6 @@
 [submodule "myPython"]
 	path = myPython
-	url = https://github.com/allenyllee/myPython.git
+	url = https://gitlub.com/allenyllee/myPython.git
 [submodule "AI-Academy-course-notes"]
 	path = AI-Academy-course-notes
 	url = https://github.com/allenyllee/AI-Academy-course-notes.git
