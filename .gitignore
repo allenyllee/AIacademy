@@ -1,3 +1,4 @@
 .history/
 .Rproj.user
 *.mp4
+.ipynb_checkpoints/
