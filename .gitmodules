@@ -1,9 +1,9 @@
-[submodule "myPython"]
-	path = myPython
-	url = https://gitlub.com/allenyllee/myPython.git
 [submodule "AI-Academy-course-notes"]
 	path = AI-Academy-course-notes
 	url = https://github.com/allenyllee/AI-Academy-course-notes.git
 [submodule "myfirstR"]
 	path = myfirstR
 	url = https://github.com/allenyllee/myfirstR.git
+[submodule "myPython"]
+	path = myPython
+	url = https://gitlab.com/allenyllee/myPython.git
